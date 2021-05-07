@@ -1,0 +1,7 @@
+1. src/main/resources -> META-INF context.xml 데이터베이스 테이블 이름 수정
+
+2. servlet-context.xml 인터셉터,파일 업로드 관련 주석처리해놓음
+
+3. HomeController 루트 home.jsp로 설정해놓음
+
+4. src -> main -> webapp -> res 데이터베이스 참고

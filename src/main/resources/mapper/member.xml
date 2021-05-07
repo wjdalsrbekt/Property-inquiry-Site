@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.UserMapper">
+
+ <select id="login" parameterType="map" resultType="MemberDto">
+ 	SELECT USERNAME,USERID, EMAIL
+ 	FROM SSAFY_MEMBER
+ 	WHERE USERID=#{userid} AND USERPWD = #{userpwd}
+ </select>
+
+<select id="userList" parameterType="SearchDto" resultType="MemberDto">
+	SELECT USERID,USERPWD,USERNAME,EMAIL
+	FROM SSAFY_MEMBER
+	<if test="word!=null or word!=''">
+		<if test="key=='name'">
+		 WHERE USERNAME LIKE CONCAT('%',#{word},'%')
+		</if>
+		<if test = "key=='id'">
+		WHERE USERID LIKE CONCAT('%',#{word},'%')
+		</if>
+	</if>
+	ORDER BY USERID DESC
+</select>
+
+<select id="userInfo" parameterType="String" resultType="MemberDto">
+	SELECT USERID,USERPWD,USERNAME,EMAIL
+	FROM SSAFY_MEMBER
+	WHERE USERID = #{userid}
+</select>
+
+<insert id="userRegister" parameterType="MemberDto">
+	INSERT INTO SSAFY_MEMBER(USERID, USERPWD, USERNAME, EMAIL)
+	VALUES(#{userid},#{userpwd},#{username},#{email})
+</insert>
+
+<update id="userModify" parameterType="MemberDto">
+	UPDATE SSAFY_MEMBER
+	SET USERPWD = #{userpwd}, EMAIL = #{email}, USERNAME =#{username}
+	WHERE USERID = #{userid}
+</update>
+
+<delete id="userDelete" parameterType="String">
+	DELETE FROM SSAFY_MEMBER
+	WHERE USERID = #{userid}
+</delete>
+
+
+</mapper>

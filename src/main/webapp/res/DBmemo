@@ -1,0 +1,13 @@
+커맨드에서 mysql > server > bin 폴더로 이동해서 아래의 명령어 실행 
+
+mysql -h localhost -P 3306 --local_infile=1 -u root -p
+
+set global local_infile=1;
+LOAD DATA LOCAL INFILE "c:/SSAFY/baseaddress.csv"
+INTO TABLE happyhouse.BASEADDRESS FIELDS TERMINATED BY ",";
+
+LOAD DATA LOCAL INFILE "c:/SSAFY/housedeal.csv"
+INTO TABLE happyhouse.housedeal FIELDS TERMINATED BY ",";
+
+LOAD DATA LOCAL INFILE "c:/SSAFY/houseinfo.csv"
+INTO TABLE happyhouse.houseinfo FIELDS TERMINATED BY ",";
